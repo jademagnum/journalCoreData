@@ -22,9 +22,9 @@ class EntryDetailViewController: UIViewController, UITextFieldDelegate {
         guard let title = titleTextField.text, let text = bodyTextView.text else { return }
         
         if let entry = self.entry {
-            EntryController.shared.update(entry: entry, with: title, text: text)
+            EntryController.shared.update(oldEntry: entry, with: title, bodyText: text)
         } else {
-            EntryController.shared.addEntryWith(title: title, text: text)
+            EntryController.shared.addEntryWith(title: title, bodyText: text)
         }
         
         let _ = self.navigationController?.popViewController(animated: true)
@@ -41,7 +41,7 @@ class EntryDetailViewController: UIViewController, UITextFieldDelegate {
     private func updateViews() {
         guard let entry = entry else { return }
         titleTextField.text = entry.title
-        bodyTextView.text = entry.text
+        bodyTextView.text = entry.bodyText
     }
     
     // MARK: UITextFieldDelegate
